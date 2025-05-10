@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PortfolioRules", "PortfolioRules\PortfolioRules.fsproj", "{5939EAE6-3F61-4188-BE3D-5457B8ECFB8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortfolioApp", "PortfolioApp\PortfolioApp.csproj", "{7E46F63C-8A83-42F4-8C30-19EDA328F79F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5939EAE6-3F61-4188-BE3D-5457B8ECFB8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5939EAE6-3F61-4188-BE3D-5457B8ECFB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5939EAE6-3F61-4188-BE3D-5457B8ECFB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5939EAE6-3F61-4188-BE3D-5457B8ECFB8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E46F63C-8A83-42F4-8C30-19EDA328F79F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E46F63C-8A83-42F4-8C30-19EDA328F79F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E46F63C-8A83-42F4-8C30-19EDA328F79F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E46F63C-8A83-42F4-8C30-19EDA328F79F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,12 @@
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/bin/Debug/net9.0/PortfolioShared.deps.json
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/bin/Debug/net9.0/PortfolioShared.dll
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/bin/Debug/net9.0/PortfolioShared.pdb
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/PortfolioShared.csproj.AssemblyReference.cache
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/PortfolioShared.GeneratedMSBuildEditorConfig.editorconfig
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/PortfolioShared.AssemblyInfoInputs.cache
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/PortfolioShared.AssemblyInfo.cs
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/PortfolioShared.csproj.CoreCompileInputs.cache
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/PortfolioShared.dll
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/refint/PortfolioShared.dll
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/PortfolioShared.pdb
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/ref/PortfolioShared.dll

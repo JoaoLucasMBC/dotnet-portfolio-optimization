@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Rr04lD9gf20=",
+  "success": true,
+  "projectFilePath": "/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/PortfolioShared.csproj",
+  "expectedPackageFiles": [
+    "/home/joaolucasmbc/.nuget/packages/mathnet.numerics/5.0.0/mathnet.numerics.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

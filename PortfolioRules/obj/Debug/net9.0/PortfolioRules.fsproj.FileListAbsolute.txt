@@ -1,0 +1,16 @@
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/bin/Debug/net9.0/PortfolioRules.deps.json
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/bin/Debug/net9.0/PortfolioRules.dll
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/bin/Debug/net9.0/PortfolioRules.pdb
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/bin/Debug/net9.0/PortfolioRules.xml
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/bin/Debug/net9.0/PortfolioShared.dll
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/bin/Debug/net9.0/PortfolioShared.pdb
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/PortfolioRules.fsproj.AssemblyReference.cache
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/PortfolioRules.AssemblyInfoInputs.cache
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/PortfolioRules.AssemblyInfo.fs
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/PortfolioRules.fsproj.CoreCompileInputs.cache
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/Portfoli.198A26D7.Up2Date
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/PortfolioRules.dll
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/refint/PortfolioRules.dll
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/PortfolioRules.xml
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/PortfolioRules.pdb
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/ref/PortfolioRules.dll
