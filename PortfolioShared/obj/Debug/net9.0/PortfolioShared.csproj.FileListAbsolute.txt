@@ -10,3 +10,4 @@
 /home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/refint/PortfolioShared.dll
 /home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/PortfolioShared.pdb
 /home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/ref/PortfolioShared.dll
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioShared/obj/Debug/net9.0/PortfolioShared.sourcelink.json

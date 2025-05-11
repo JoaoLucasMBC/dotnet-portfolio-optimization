@@ -36,3 +36,4 @@
 /home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioApp/obj/Debug/net9.0/PortfolioApp.pdb
 /home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioApp/obj/Debug/net9.0/PortfolioApp.genruntimeconfig.cache
 /home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioApp/obj/Debug/net9.0/ref/PortfolioApp.dll
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioApp/obj/Debug/net9.0/PortfolioApp.sourcelink.json

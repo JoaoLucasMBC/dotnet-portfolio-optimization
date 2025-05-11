@@ -10,7 +10,7 @@ open MathUtils
 module Sharpe =    
 
     let calculateAnnualAverageReturn (returns: Matrix<float>) (weights: Matrix<float>) =
-        let weightedReturns = returns * weights
+        let weightedReturns = returns * weights.Transpose()
         let dailyReturns = weightedReturns.Column(0)
         let dailyMean = dailyReturns.Sum() / float (dailyReturns.Count)
         dailyMean * 252.0
@@ -19,7 +19,7 @@ module Sharpe =
     let calculateAnuualVolatility (returns: Matrix<float>) (weights: Matrix<float>) =
         let covMatrix = covariance returns
 
-        let portfolioVariance = (weights.Transpose() * covMatrix * weights).[0, 0]
+        let portfolioVariance = (weights * covMatrix * weights.Transpose()).[0, 0]
         let portfolioStdDev = Math.Sqrt(portfolioVariance)
         
         portfolioStdDev * Math.Sqrt(252.0)

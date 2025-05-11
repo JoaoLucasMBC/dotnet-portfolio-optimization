@@ -10,7 +10,9 @@ class Program
 
         var results = Optimizer.optimize(data); // `data` is List<StockTimeSeriesRow>
         
-        var outputPath = Path.Combine("data", "output.csv");
+        var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+        var outputPath = Path.Combine("data", $"output_{timestamp}.csv");
+
         CsvWriter.WriteToCsv(outputPath, results);
 
         // Get the max Sharpe ratio and its corresponding weights

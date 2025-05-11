@@ -11,17 +11,21 @@ open MathUtils
 
 module Optimizer =
 
-    let toPriceMatrix (selectedTickers: string list) (data: List<StockTimeSeriesRow>) : float[][] =
+    let toPriceMatrix (data: List<StockTimeSeriesRow>) (allTickers: string list) : float[][] =
         data
         |> Seq.toList
         |> List.map (fun row ->
-            selectedTickers
-            |> List.map (fun ticker ->
-                row.Prices.[ticker] |> float
-            )
-            |> List.toArray
+            allTickers |> List.map (fun ticker -> float row.Prices.[ticker]) |> List.toArray
         )
         |> List.toArray
+
+
+    let toReturnMatrix (priceMatrix: float[][]) : float[][] =
+        priceMatrix
+            |> Array.pairwise
+            |> Array.map (fun (prev, curr) ->
+                Array.map2 (fun pPrev pCurr -> pCurr / pPrev - 1.0) prev curr
+            )
 
 
     let generateValidWeights count =
@@ -31,32 +35,33 @@ module Optimizer =
             else
                 let raw = Array.init count (fun _ -> random.NextDouble())
                 let weights = normalize raw
-                if Array.exists (fun w -> w > 0.2) weights then
+                if Array.exists (fun w -> w > 0.2 || w = 0.0) weights then
                     loop acc
                 else
                     loop (weights :: acc)
         loop []
 
-    let findBestSharpeRatio (data: List<StockTimeSeriesRow>) (tickers: string list) =
-        let priceMatrix = toPriceMatrix tickers data
+    
+    let selectColumns (returns: float[][]) (indices: int list) : Matrix<float> =
+        indices
+        |> List.map (fun i -> returns |> Array.map (fun row -> row.[i]))
+        |> List.toArray
+        |> Array.transpose
+        |> Matrix<float>.Build.DenseOfRowArrays
 
-        // Map the price to the daily returns
-        let dailyReturns =
-            priceMatrix
-            |> Array.pairwise
-            |> Array.map (fun (prev, curr) ->
-                Array.map2 (fun pPrev pCurr -> pCurr / pPrev - 1.0) prev curr
-            )
 
-        let weightOptions = generateValidWeights tickers.Length
 
-        let dailyReturnsMat = Matrix<float>.Build.DenseOfRowArrays(dailyReturns)
+    let findBestSharpeRatio (dailyReturns: float[][]) (indices: int list) =
+
+        let filteredMatrix = selectColumns dailyReturns indices
+
+        let weightOptions = generateValidWeights indices.Length
 
         let results =
             weightOptions
-            |> Array.map (fun weights ->
-                let weightVec = Matrix<float>.Build.DenseOfColumnArrays([| weights |])
-                let sharpe = calculateSharpeRatio dailyReturnsMat weightVec
+            |> Array.Parallel.map (fun weights ->
+                let weightVec = Matrix<float>.Build.DenseOfRowArrays([| weights |])
+                let sharpe = calculateSharpeRatio filteredMatrix weightVec
                 (sharpe, weightVec)
             )
 
@@ -66,18 +71,24 @@ module Optimizer =
         
         bestSharpe, bestWeights
 
+
     let optimize (data: List<StockTimeSeriesRow>) =
 
         let allTickers = data[0].Prices.Keys |> Seq.toList
-        
-        let tickersCombinations = combine allTickers 25 |> List.toArray
+        let tickerIndexMap = allTickers |> List.mapi (fun i t -> t, i) |> dict
 
+        let tickersCombinations = combine allTickers 25 |> List.toArray
+        
         printfn "Number of combinations: %d" (tickersCombinations.Length)
+        
+        let priceMatrix = toPriceMatrix data allTickers
+        let returnMatrix = toReturnMatrix priceMatrix
 
         let results =
             tickersCombinations
             |> Array.Parallel.map (fun tickers ->
-                let sharpe, weights = findBestSharpeRatio data tickers
+                let indices = tickers |> List.map (fun t -> tickerIndexMap[t])
+                let sharpe, weights = findBestSharpeRatio returnMatrix indices
                 OptimizationResult(
                     Tickers = System.Collections.Generic.List<string>(tickers),
                     Sharpe = sharpe,

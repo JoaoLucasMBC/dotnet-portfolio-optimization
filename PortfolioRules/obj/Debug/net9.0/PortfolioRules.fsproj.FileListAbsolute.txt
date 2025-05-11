@@ -14,3 +14,4 @@
 /home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/PortfolioRules.xml
 /home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/PortfolioRules.pdb
 /home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/ref/PortfolioRules.dll
+/home/joaolucasmbc/Desktop/prog-func/dotnet-portfolio-optimization/PortfolioRules/obj/Debug/net9.0/PortfolioRules.sourcelink.json
