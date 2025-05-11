@@ -70,6 +70,9 @@ The results will be written to `data/output.csv`, containing the best-performing
 ### Libraries
 
 * `MathNet.Numerics`: for matrix operations and statistics
+* `CsvHelper`: for reading and writing CSV files
+* `Newtonsoft.Json`: for JSON serialization/deserialization
+* `DotNetEnv`: for loading environment variables
 
 ---
 
