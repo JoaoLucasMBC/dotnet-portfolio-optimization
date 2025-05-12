@@ -17,7 +17,7 @@ public class CsvWriter
         foreach (var result in results)
         {
             var tickers = result.Tickers.ToArray();
-            var weights = result.Weights.Row(0).ToArray();
+            var weights = result.Weights.ToArray();
             var sharpe = result.Sharpe;
 
             // Tickers

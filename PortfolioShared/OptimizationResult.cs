@@ -6,6 +6,6 @@ namespace PortfolioShared
     {
         public List<string> Tickers { get; init; }
         public double Sharpe { get; init; }
-        public Matrix<double> Weights { get; init; }
+        public List<double> Weights { get; init; }
     }
 }

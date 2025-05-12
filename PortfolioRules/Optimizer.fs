@@ -3,8 +3,6 @@ namespace PortfolioRules
 open PortfolioShared
 open System.Collections.Generic
 open System
-open MathNet.Numerics.LinearAlgebra
-open System.Threading.Tasks
 
 open Sharpe
 open MathUtils
@@ -19,80 +17,48 @@ module Optimizer =
         )
         |> List.toArray
 
-
     let toReturnMatrix (priceMatrix: float[][]) : float[][] =
         priceMatrix
-            |> Array.pairwise
-            |> Array.map (fun (prev, curr) ->
-                Array.map2 (fun pPrev pCurr -> pCurr / pPrev - 1.0) prev curr
-            )
+        |> Array.pairwise
+        |> Array.map (fun (prev, curr) ->
+            Array.map2 (fun pPrev pCurr -> pCurr / pPrev - 1.0) prev curr
+        )
 
-
-    let generateValidWeights count =
-        let rec loop acc =
-            if List.length acc = 1000 then
-                acc |> List.toArray
-            else
-                let raw = Array.init count (fun _ -> random.NextDouble())
-                let weights = normalize raw
-                if Array.exists (fun w -> w > 0.2 || w = 0.0) weights then
-                    loop acc
-                else
-                    loop (weights :: acc)
-        loop []
-
-    
-    let selectColumns (returns: float[][]) (indices: int list) : Matrix<float> =
-        indices
-        |> List.map (fun i -> returns |> Array.map (fun row -> row.[i]))
-        |> List.toArray
-        |> Array.transpose
-        |> Matrix<float>.Build.DenseOfRowArrays
-
-
-
-    let findBestSharpeRatio (dailyReturns: float[][]) (indices: int list) =
-
-        let filteredMatrix = selectColumns dailyReturns indices
-
-        let weightOptions = generateValidWeights indices.Length
+    let findBestSharpeRatio (dailyReturns: float[][]) (indices: int list) (covarianceMatrix: float[][]) =
+        let filteredMatrix = extractColumns dailyReturns indices
+        let filteredCovarianceMatrix = extractColumns covarianceMatrix indices
 
         let results =
-            weightOptions
-            |> Array.Parallel.map (fun weights ->
-                let weightVec = Matrix<float>.Build.DenseOfRowArrays([| weights |])
-                let sharpe = calculateSharpeRatio filteredMatrix weightVec
-                (sharpe, weightVec)
+            Array.Parallel.init 1000 (fun _ ->
+                let weights = generateWeights indices.Length
+                let sharpe = calculateSharpeRatio filteredMatrix weights filteredCovarianceMatrix
+                (sharpe, weights)
             )
 
-        let bestSharpe, bestWeights =
-            results
-            |> Array.maxBy fst
-        
-        bestSharpe, bestWeights
-
+        results |> Array.maxBy fst
 
     let optimize (data: List<StockTimeSeriesRow>) =
-
         let allTickers = data[0].Prices.Keys |> Seq.toList
         let tickerIndexMap = allTickers |> List.mapi (fun i t -> t, i) |> dict
 
         let tickersCombinations = combine allTickers 25 |> List.toArray
-        
+
         printfn "Number of combinations: %d" (tickersCombinations.Length)
-        
+
         let priceMatrix = toPriceMatrix data allTickers
         let returnMatrix = toReturnMatrix priceMatrix
 
+        let covarianceMatrix = covariance returnMatrix
+
         let results =
             tickersCombinations
-            |> Array.Parallel.map (fun tickers ->
+            |> Array.map (fun tickers ->
                 let indices = tickers |> List.map (fun t -> tickerIndexMap[t])
-                let sharpe, weights = findBestSharpeRatio returnMatrix indices
+                let sharpe, weights = findBestSharpeRatio returnMatrix indices covarianceMatrix
                 OptimizationResult(
                     Tickers = System.Collections.Generic.List<string>(tickers),
                     Sharpe = sharpe,
-                    Weights = weights
+                    Weights = System.Collections.Generic.List<double>(weights)
                 )
             )
 
