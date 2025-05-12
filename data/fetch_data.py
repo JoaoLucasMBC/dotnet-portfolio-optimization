@@ -11,8 +11,8 @@ tickers = [
     "CVX", "MMM", "NVDA", "WMT", "DIS", "MRK", "KO", "CSCO", "NKE", "VZ"
 ]
 
-start_date = "2024-08-01"
-end_date = "2024-12-31"
+start_date = "2025-01-01"
+end_date = "2025-03-31"
 
 # Baixa todos os dados
 raw_data = yf.download(tickers, start=start_date, end=end_date)
@@ -21,6 +21,6 @@ raw_data = yf.download(tickers, start=start_date, end=end_date)
 close_data = raw_data["Close"]
 
 # Salva
-close_data.to_csv("dow_jones_close_prices_aug_dec_2024.csv")
+close_data.to_csv("dow_jones_close_prices_jan_mar_2025.csv")
 
-print("Somente preços de fechamento salvos em 'dow_jones_close_prices_aug_dec_2024.csv'")
+print("Somente preços de fechamento salvos em 'dow_jones_close_prices_jan_mar_2025.csv'")
