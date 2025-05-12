@@ -59,12 +59,6 @@ class Program
             return;
         }
 
-        //PRint the data
-        foreach (var row in data)
-        {
-            Console.WriteLine($"{row.Date}: {string.Join(", ", row.Prices.Select(p => $"{p.Key}: {p.Value}"))}");
-        }
-
         var results = Optimizer.optimize(data);
         
         var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
