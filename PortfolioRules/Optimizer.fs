@@ -45,7 +45,7 @@ module Optimizer =
 
         // Parallel computation of Sharpe ratios for 1000 random weight vectors
         let results =
-            Array.init 1000 (fun _ ->
+            Array.Parallel.init 1000 (fun _ ->
                 let weights = generateWeights indices.Length
                 let sharpe = calculateSharpeRatio filteredMatrix weights filteredCovarianceMatrix
                 (sharpe, weights)
