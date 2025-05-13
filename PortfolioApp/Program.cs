@@ -1,8 +1,10 @@
 using PortfolioRules;
 using PortfolioShared;
 using DotNetEnv;
+using System.Diagnostics;
 
-
+/// Entry point of the application.
+/// Loads stock data (via API or CSV), runs the optimizer, and writes results to a CSV file.
 class Program
 {
     static void Main(string[] args)
@@ -10,11 +12,11 @@ class Program
         // Load environment variables from .env file
         Env.Load();
 
-        // Retrieve configuration values
+        // Get config values
         string mode = Environment.GetEnvironmentVariable("MODE")?.ToLower() ?? "csv";
-        string startDateStr = Environment.GetEnvironmentVariable("START_DATE");
-        string endDateStr = Environment.GetEnvironmentVariable("END_DATE");
-        string apiKey = Environment.GetEnvironmentVariable("API_KEY");
+        string startDateStr = Environment.GetEnvironmentVariable("START_DATE") ?? "2024-08-01";
+        string endDateStr = Environment.GetEnvironmentVariable("END_DATE") ?? "2024-12-31";
+        string apiKey = Environment.GetEnvironmentVariable("API_KEY") ?? string.Empty;
 
         if (!DateTime.TryParse(startDateStr, out DateTime startDate))
         {
@@ -30,6 +32,7 @@ class Program
 
         List<StockTimeSeriesRow> data;
 
+        // Load stock price data from Alpha Vantage API or CSV
         if (mode == "api")
         {
             if (string.IsNullOrEmpty(apiKey))
@@ -58,20 +61,29 @@ class Program
             Console.WriteLine("Invalid MODE in .env file. Use 'csv' or 'api'.");
             return;
         }
+        var sw = new Stopwatch();
+        sw.Start();
 
+        // Run optimization
         var results = Optimizer.optimize(data);
-        
+
+        sw.Stop();
+        Console.WriteLine("Optimization took: " + sw.Elapsed.TotalMinutes + " minutes");
+
+        // Write output to CSV with timestamped filename
         var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         var outputPath = Path.Combine("data", $"output_{timestamp}.csv");
-
         CsvWriter.WriteToCsv(outputPath, results);
 
-        // Get the max Sharpe ratio and its corresponding weights
+        // Report the best result
         var maxSharpe = results.Max(r => r.Sharpe);
         var maxSharpeResult = results.First(r => r.Sharpe == maxSharpe);
 
         Console.WriteLine("Max Sharpe Ratio: " + maxSharpe);
-        Console.WriteLine("Weights: " + string.Join(", ", maxSharpeResult.Weights));
         Console.WriteLine("Tickers: " + string.Join(", ", maxSharpeResult.Tickers));
+        Console.WriteLine("Weights: " + string.Join(", ", maxSharpeResult.Weights));
+
+        Console.WriteLine("\nAll data written to " + outputPath);
+
     }
 }
